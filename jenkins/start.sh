@@ -1,7 +1,7 @@
 # 源jar路径  即jenkins构建后存放的路径
-SOURCE_PATH=/var/lib/jenkins/workspace
+SOURCE_PATH=/var/jenkins_home/workspace/my_test
 #jenkins工作空间名 docker 镜像/容器名字或者jar名字 这里都命名为这个
-SERVER_NAME=jenkinsDemo
+SERVER_NAME=jenkins
 #服务器存放执行jar包的路径
 BASE_PATH=/usr/jenkins-demo-jar
 #项目版本
@@ -22,7 +22,7 @@ else
     kill $PID
 fi
 echo "原java进程已关闭"
- nohup java -XX:+HeapDumpOnOutOfMemoryError -jar /usr/$SERVER_NAME.jar --spring.profiles.active=prod >  $BASE_PATH/start.log
+ nohup java -XX:+HeapDumpOnOutOfMemoryError -jar $BASE_PATH/$SERVER_NAME.jar --spring.profiles.active=prod >  $BASE_PATH/start.log
 echo "$SERVER_NAME程序部署完成"
 # 启动docker jdk镜像运行jar包
 #关闭jdk8容器
